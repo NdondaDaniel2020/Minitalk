@@ -6,7 +6,10 @@
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:42:28 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/03 15:42:29 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:44:00 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
