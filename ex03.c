@@ -1,46 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex02.c                                             :+:      :+:    :+:   */
+/*   ex03.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/03 00:00:00 by usuario           #+#    #+#             */
-/*   Updated: 2024/07/04 09:33:25 by nmatondo         ###   ########.fr       */
+/*   Created: 2024/07/04 09:55:17 by nmatondo          #+#    #+#             */
+/*   Updated: 2024/07/04 09:55:19 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-// Manipulador para SIGINT
-void	sigint_handler(int sig)
+// Manipulador para SIGALRM
+void	sigalrm_handler(int sig)
 {
-	printf("Recebi o sinal SIGINT (Ctrl+C). Código do sinal: %d\n", sig);
+	printf("Recebi o sinal SIGALRM. Código do sinal: %d\n", sig);
 }
 
 int	main(void)
 {
 	struct sigaction sa;
+	pid_t pid;
 
-	// Inicializando a estrutura sigaction
-	sa.sa_handler = sigint_handler;
-	sa.sa_flags = SA_RESTART; // Reiniciar chamadas de sistema interrompidas
-	sigemptyset(&sa.sa_mask); // Limpar a máscara de sinal
+	// Inicializando a estrutura sigaction para SIGALRM
+	sa.sa_handler = sigalrm_handler;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
 
 	// Registrando o manipulador de sinal usando sigaction
-	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGALRM, &sa, NULL);
 
 	// Obtendo o PID do processo
-	pid_t pid;
 	pid = getpid();
 	printf("PID do processo: %d\n", pid);
+
+	// Enviando SIGALRM para o próprio processo após 5 segundos
+	printf("Enviando SIGALRM para o próprio processo após 5 segundos...\n");
+	sleep(5);
+	kill(pid, SIGALRM);
 
 	// Loop infinito para manter o programa rodando
 	while (1)
 	{
-		printf("Executando... Pressione Ctrl+C para testar SIGINT.\n");
+		printf("Executando... Pressione Ctrl+C para sair.\n");
 		sleep(1);
 	}
 	return (0);
