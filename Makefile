@@ -1,0 +1,58 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/06 01:32:20 by nmatondo          #+#    #+#              #
+#    Updated: 2024/07/06 07:50:16 by nmatondo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+SERVER = server
+CLIENTE = cliente
+HEDER = minitalk
+
+SRCS = ./Libft/*.c
+OBJS = *.o
+MINITALK = minitalk.a
+
+
+all: $(MINITALK)
+
+$(MINITALK):
+	$(CC) $(CFLAGS) -c $(SRCS)
+	ar rc $(MINITALK) $(OBJS)
+
+bonus:	all
+
+m: $(MINITALK)
+	$(CC) $(CFLAGS) $(CLIENTE).c $(HEDER).h $(MINITALK) -o $(CLIENTE)
+	$(CC) $(CFLAGS) $(SERVER).c $(HEDER).h $(MINITALK) -o $(SERVER)
+	make clean
+
+b: $(MINITALK)
+	$(CC) $(CFLAGS) $(CLIENTE)_bonus.c $(HEDER)_bonus.h $(MINITALK) -o $(CLIENTE)
+	$(CC) $(CFLAGS) $(SERVER)_bonus.c $(HEDER)_bonus.h $(MINITALK) -o $(SERVER)
+	make clean
+
+n:
+	norminette .
+
+clean:
+	rm -f *.o
+
+fclean: clean
+	rm -f $(SERVER)
+
+eclean: fclean
+	rm -f $(MINITALK)
+	rm -f $(CLIENTE)
+
+re: fclean all
+
+.PHONY: all clean fclean re
