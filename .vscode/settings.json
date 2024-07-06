@@ -3,6 +3,7 @@
 	"files.associations": {
 		"stdlib.h": "c",
 		"minitalk.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"minitalk_bonus.h": "c"
 	}
 }
