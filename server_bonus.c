@@ -6,11 +6,11 @@
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:33:37 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/06 07:24:55 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/06 08:06:11 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 static char	bin_to_char(char *bits)
 {
