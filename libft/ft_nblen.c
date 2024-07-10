@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_nblen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 12:32:41 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/10 15:31:31 by nmatondo         ###   ########.fr       */
+/*   Created: 2024/05/28 09:42:03 by nmatondo          #+#    #+#             */
+/*   Updated: 2024/07/03 13:17:04 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-void	send_sms(pid_t pid, char *sms)
+int	ft_nblen(long long nb, int base)
 {
-	char	bits;
-	int		n;
+	long int	i;
 
-	while (*sms)
+	i = 0;
+	if (nb < 0)
 	{
-		n = 32;
-		while (n--)
-		{
-			bits = ((*sms >> n) & 1);
-			if (bits == 0)
-				kill(pid, SIGUSR1);
-			else
-				kill(pid, SIGUSR2);
-			usleep(300);
-		}
-		++sms;
+		nb = nb * -1;
+		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	if (ac == 3)
+	if (nb == 0)
+		i++;
+	while (nb)
 	{
-		send_sms(ft_atoi(av[1]), ft_strjoin(av[2], "\n"));
+		nb = nb / base;
+		i++;
 	}
-	else
-		ft_printf("FALHA NOS ARGUMENTOD PASSADOS\n");
-	return (0);
+	return (i);
 }

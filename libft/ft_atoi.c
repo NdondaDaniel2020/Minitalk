@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 12:32:41 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/10 15:31:31 by nmatondo         ###   ########.fr       */
+/*   Created: 2024/02/01 03:21:18 by nmatondo          #+#    #+#             */
+/*   Updated: 2024/05/24 12:58:37 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-void	send_sms(pid_t pid, char *sms)
+int	ft_atoi(const char *nptr)
 {
-	char	bits;
-	int		n;
+	int	i;
+	int	s;
+	int	r;
 
-	while (*sms)
+	i = 0;
+	s = 1;
+	r = 0;
+	while ((nptr[i] >= '\a' && nptr[i] <= '\r') || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		n = 32;
-		while (n--)
-		{
-			bits = ((*sms >> n) & 1);
-			if (bits == 0)
-				kill(pid, SIGUSR1);
-			else
-				kill(pid, SIGUSR2);
-			usleep(300);
-		}
-		++sms;
+		if (nptr[i] == '-')
+			s *= -1;
+		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	if (ac == 3)
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		send_sms(ft_atoi(av[1]), ft_strjoin(av[2], "\n"));
+		r = (nptr[i] - '0') + (r * 10);
+		i++;
 	}
-	else
-		ft_printf("FALHA NOS ARGUMENTOD PASSADOS\n");
-	return (0);
+	return (r * s);
 }
