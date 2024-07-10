@@ -6,7 +6,7 @@
 #    By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 01:32:20 by nmatondo          #+#    #+#              #
-#    Updated: 2024/07/06 08:11:26 by nmatondo         ###   ########.fr        #
+#    Updated: 2024/07/10 15:30:09 by nmatondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SERVER = server
 CLIENTE = client
 HEDER = minitalk
 
-SRCS = ./Libft/*.c
+SRCS = ./libft/*.c
 OBJS = *.o
 MINITALK = minitalk.a
 
