@@ -4,6 +4,7 @@
 		"stdlib.h": "c",
 		"minitalk.h": "c",
 		"unistd.h": "c",
-		"minitalk_bonus.h": "c"
+		"minitalk_bonus.h": "c",
+		"libft.h": "c"
 	}
 }
