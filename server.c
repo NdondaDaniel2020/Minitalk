@@ -6,7 +6,7 @@
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:33:37 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/06 07:25:35 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:32:16 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	bin_to_char(char *bits)
 void	sigusr_handler(int sig)
 {
 	static int	i = 0;
-	static char	bits[8];
+	static char	bits[32];
 	int			bit;
 
 	bit = 0;
@@ -40,7 +40,7 @@ void	sigusr_handler(int sig)
 		bit = 1;
 	bits[i] = bit + '0';
 	i++;
-	if (i == 8)
+	if (i == 32)
 	{
 		i = 0;
 		ft_printf("%c", bin_to_char(bits));
