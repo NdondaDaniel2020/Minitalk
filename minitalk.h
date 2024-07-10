@@ -6,7 +6,7 @@
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:24:33 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/06 07:48:11 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:36:00 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "./Libft/libft.h"
+# include "./libft/libft.h"
 
 void	send_sms(pid_t pid, char *sms);
 void	sigusr_handler(int sig);

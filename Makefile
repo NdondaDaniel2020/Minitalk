@@ -6,7 +6,7 @@
 #    By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 01:32:20 by nmatondo          #+#    #+#              #
-#    Updated: 2024/07/10 15:30:09 by nmatondo         ###   ########.fr        #
+#    Updated: 2024/07/10 15:35:23 by nmatondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SERVER = server
-CLIENTE = client
+ CLIENTE = client
 HEDER = minitalk
 
 SRCS = ./libft/*.c
