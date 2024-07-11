@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cliente_bonus.c                                    :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:32:41 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/06 08:06:50 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:10:33 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	send_sms(pid_t pid, char *sms)
 {
 	char	bits;
 	int		n;
+	int		ok;
 
-	while (*sms)
+	ok = 1;
+	while (*sms || ok == 1)
 	{
 		n = 8;
 		while (n--)
@@ -34,8 +36,10 @@ void	send_sms(pid_t pid, char *sms)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(300);
+			usleep(1000);
 		}
+		if (*sms == '\0')
+			break ;
 		++sms;
 	}
 }

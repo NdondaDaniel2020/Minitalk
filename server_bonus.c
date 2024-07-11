@@ -6,49 +6,28 @@
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:33:37 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/06 08:06:11 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:06:35 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-static char	bin_to_char(char *bits)
-{
-	char	c;
-	int		i;
-
-	i = 0;
-	c = 0;
-	while (i < 8)
-	{
-		c = (c << 1) | (bits[i] - '0');
-		i++;
-	}
-	return (c);
-}
-
 void	sigusr_handler(int sig, siginfo_t *info, void *context)
 {
 	static int	i = 0;
-	static char	bits[8];
-	int			bit;
-	char		cha;
+	static char	cha = 0;
 
-	bit = 0;
 	(void)context;
-	if (sig == SIGUSR1)
-		bit = 0;
-	else
-		bit = 1;
-	bits[i] = bit + '0';
+	cha <<= 1;
+	cha |= (sig == SIGUSR2);
 	i++;
 	if (i == 8)
 	{
-		i = 0;
-		cha = bin_to_char(bits);
 		ft_printf("%c", cha);
-		if (cha == '\n')
+		if (cha == '\0')
 			kill(info->si_pid, SIGUSR1);
+		i = 0;
+		cha = 0;
 	}
 }
 
