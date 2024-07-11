@@ -6,7 +6,7 @@
 /*   By: nmatondo <nmatondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:32:41 by nmatondo          #+#    #+#             */
-/*   Updated: 2024/07/10 15:31:31 by nmatondo         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:30:52 by nmatondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	send_sms(pid_t pid, char *sms)
 {
-	char	bits;
+	int		bit;
 	int		n;
 
 	while (*sms)
 	{
-		n = 32;
+		n = 8;
 		while (n--)
 		{
-			bits = ((*sms >> n) & 1);
-			if (bits == 0)
+			bit = ((*sms >> n) & 1);
+			if (bit == 0)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(300);
+			usleep(1000);
 		}
 		++sms;
 	}
