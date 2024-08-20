@@ -1,5 +1,4 @@
 # Minitalk
 Creating a communication program in the form of a client and a server.
 
-O objetivo deste projeto é codificar um pequeno programa de troca de dados
-usando sinais UNIX.
+The goal of this project is to code a small data exchange program using UNIX signals.
